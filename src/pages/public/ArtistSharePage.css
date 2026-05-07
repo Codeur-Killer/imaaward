@@ -1,0 +1,157 @@
+/* ArtistSharePage.css */
+.share-page { min-height: 100vh; padding-top: var(--navbar-height); background: var(--bg-primary); }
+
+/* Loading / not found */
+.share-loading, .share-notfound {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px; padding: 40px 20px; text-align: center;
+}
+.share-spinner {
+  width: 44px; height: 44px;
+  border: 3px solid rgba(201,168,76,.15); border-top-color: var(--accent-gold);
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+.share-notfound h1 { font-family: var(--font-display); font-size: 28px; color: var(--text-primary); }
+.share-notfound p  { color: var(--text-secondary); font-size: 15px; }
+.share-back-btn {
+  padding: 10px 22px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-secondary); font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all .2s;
+}
+.share-back-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* Hero */
+.share-hero {
+  position: relative; padding: 28px 0 0;
+  background: var(--bg-secondary); border-bottom: 1px solid var(--border);
+}
+.share-hero-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(var(--cat-color, 201,168,76), 0.08), transparent 70%);
+}
+.share-back-link {
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 24px;
+  padding: 7px 14px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: rgba(255,255,255,.04);
+  color: var(--text-secondary); font-size: 13px; font-family: var(--font-body);
+  cursor: pointer; transition: all .2s;
+}
+.share-back-link:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* Carte principale */
+.share-card {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 48px;
+  padding: 44px 0 80px;
+}
+
+/* Photo */
+.share-media  { position: relative; }
+.share-photo-frame {
+  position: relative; border-radius: 18px; overflow: hidden;
+  aspect-ratio: 1; background: var(--bg-secondary);
+  box-shadow: 0 20px 56px rgba(0,0,0,.5);
+}
+.share-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.share-photo-fallback {
+  width: 100%; height: 100%; display: flex;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-purple));
+  font-family: var(--font-display); font-size: 90px; font-weight: 900; color: #fff;
+}
+.share-cat-pill {
+  position: absolute; bottom: 12px; left: 12px;
+  padding: 5px 12px; border-radius: var(--radius-full);
+  font-size: 12px; font-weight: 700; backdrop-filter: blur(8px);
+}
+
+/* Infos */
+.share-info { display: flex; flex-direction: column; gap: 12px; padding-top: 6px; }
+.share-nationality { font-size: 13px; color: var(--text-muted); }
+.share-name {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 42px); font-weight: 900;
+  color: var(--text-primary); margin: 0; line-height: 1.1;
+}
+.share-realname { font-size: 14px; color: var(--text-secondary); margin: 0; }
+.share-genre    { font-size: 14px; color: var(--accent-gold); font-style: italic; margin: 0; }
+.share-bio {
+  font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin: 0;
+  padding: 13px; background: rgba(255,255,255,.03);
+  border: 1px solid var(--border); border-radius: 11px;
+}
+
+/* Stats */
+.share-stats { display: flex; gap: 22px; flex-wrap: wrap; }
+.share-stat   { display: flex; flex-direction: column; gap: 2px; }
+.share-stat-n { font-family: var(--font-accent); font-size: 26px; color: var(--accent-gold-light); line-height: 1; }
+.share-stat-l { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; }
+
+/* Boutons */
+.share-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.share-vote-btn {
+  flex: 1; min-width: 180px;
+  padding: 13px 22px; border-radius: var(--radius-full);
+  color: #080808; font-family: var(--font-body); font-size: 14px; font-weight: 800;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all .2s; box-shadow: 0 4px 18px rgba(201,168,76,.4);
+}
+.share-vote-btn:hover:not(.share-vote-btn-used) { transform: translateY(-2px); filter: brightness(1.08); }
+.share-vote-btn-used {
+  background: linear-gradient(135deg, #4C1D95, #7C3AED) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 18px rgba(124,58,237,.4) !important;
+}
+.share-share-btn {
+  padding: 13px 18px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-secondary); font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  cursor: pointer; display: flex; align-items: center; gap: 7px; transition: all .2s;
+}
+.share-share-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* Boîte de lien */
+.share-link-box {
+  padding: 16px;
+  background: rgba(201,168,76,.04);
+  border: 1px solid rgba(201,168,76,.2);
+  border-radius: 14px;
+}
+.share-link-title {
+  font-size: 12px; color: var(--text-secondary); margin: 0 0 10px;
+  font-weight: 500; line-height: 1.5;
+}
+.share-link-row { display: flex; gap: 8px; }
+.share-link-input {
+  flex: 1; padding: 10px 12px; border-radius: 9px;
+  border: 1px solid var(--border); background: rgba(255,255,255,.04);
+  color: var(--text-secondary); font-size: 12px; font-family: monospace;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: text;
+}
+.share-link-input:focus { outline: none; border-color: var(--accent-gold); }
+.share-copy-btn {
+  padding: 10px 16px; border-radius: 9px;
+  background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold));
+  color: #080808; font-family: var(--font-body); font-size: 12px; font-weight: 800;
+  border: none; cursor: pointer; white-space: nowrap;
+  display: flex; align-items: center; gap: 5px; transition: all .2s; flex-shrink: 0;
+}
+.share-copy-btn:hover { filter: brightness(1.1); }
+.share-copy-btn.copied {
+  background: linear-gradient(135deg, #059669, var(--success)) !important;
+  color: #fff !important;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .share-card { grid-template-columns: 240px 1fr; gap: 28px; }
+}
+@media (max-width: 640px) {
+  .share-card { grid-template-columns: 1fr; gap: 20px; padding: 28px 0 52px; }
+  .share-photo-frame { max-width: 280px; margin: 0 auto; }
+  .share-vote-btn { min-width: unset; }
+  .share-stat-n { font-size: 20px; }
+}

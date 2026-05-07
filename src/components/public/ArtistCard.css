@@ -1,0 +1,167 @@
+/* ArtistCard.css — Hauteur uniforme, navigation vers page artiste */
+
+.artist-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  position: relative;
+  /* Flex column pour hauteur uniforme dans la grille */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.artist-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), var(--shadow-gold);
+}
+.artist-card-voted { border-color: rgba(16,185,129,0.3); }
+.artist-card-voted:hover {
+  border-color: rgba(16,185,129,0.55);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.4), 0 0 18px rgba(16,185,129,0.12);
+}
+
+/* Rang */
+.artist-card-rank {
+  position: absolute; top: 10px; left: 10px;
+  font-size: 22px; z-index: 3;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Photo — carré via padding-top trick */
+.artist-card-photo-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;      /* carré parfait */
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+.artist-card-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+  display: block;
+}
+.artist-card:hover .artist-card-photo { transform: scale(1.05); }
+.artist-card-photo-fallback {
+  position: absolute; inset: 0; display: none;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-purple));
+  font-family: var(--font-display); font-size: 52px; font-weight: 900;
+  color: white; text-transform: uppercase;
+}
+.artist-card-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,11,18,0.82) 0%, transparent 50%);
+  pointer-events: none;
+}
+.artist-card-voted-badge {
+  position: absolute; bottom: 10px; right: 10px;
+  display: flex; align-items: center; gap: 4px;
+  background: var(--success-bg); border: 1px solid rgba(16,185,129,0.45);
+  color: var(--success); font-size: 10px; font-weight: 700;
+  padding: 4px 8px; border-radius: var(--radius-full);
+  backdrop-filter: blur(8px);
+}
+
+/* Corps — flex pour pousser les boutons en bas */
+.artist-card-body {
+  padding: 13px 13px 13px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.artist-card-nationality {
+  font-size: 11px; color: var(--text-muted); margin-bottom: 2px; line-height: 1;
+}
+.artist-card-name {
+  font-family: var(--font-display); font-size: 15px; font-weight: 700;
+  color: var(--text-primary); margin-bottom: 2px;
+  /* Max 2 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; line-height: 1.25;
+  min-height: 2.5em;
+}
+.artist-card-genre {
+  font-size: 11px; color: var(--accent-gold); margin-bottom: 9px;
+  font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.artist-card-votes-row {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;
+}
+.artist-card-votes-count { font-size: 11px; color: var(--text-secondary); }
+.artist-card-pct {
+  font-family: var(--font-accent); font-size: 17px;
+  color: var(--accent-gold-light); letter-spacing: 0.02em;
+}
+.artist-card-progress { padding-top: 5px; }
+
+/* Spacer → pousse les boutons en bas */
+.artist-card-spacer { flex: 1; min-height: 8px; }
+
+/* Zone boutons */
+.artist-card-actions { display: flex; flex-direction: column; gap: 5px; margin-top: 10px; }
+
+/* Bouton voter principal */
+.artist-card-vote-btn {
+  width: 100%; padding: 9px 12px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body); font-size: 12px; font-weight: 700;
+  cursor: pointer; border: none;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  transition: all 0.2s;
+  background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold));
+  color: #080808; box-shadow: 0 2px 10px rgba(201,168,76,0.3);
+}
+.artist-card-vote-btn:hover {
+  transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201,168,76,0.5);
+}
+/* Vote gratuit utilisé → bouton payant violet */
+.artist-card-vote-btn-used {
+  background: linear-gradient(135deg, #4C1D95, #7C3AED) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 10px rgba(124,58,237,0.35) !important;
+}
+.artist-card-vote-btn-used:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.55) !important;
+}
+
+/* Ligne inférieure : partager + voir page */
+.artist-card-bottom-row {
+  display: flex; gap: 5px;
+}
+.artist-card-share-btn {
+  flex: 1; padding: 6px 8px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-secondary); font-size: 11px; font-weight: 600;
+  cursor: pointer; transition: all 0.18s;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  font-family: var(--font-body);
+}
+.artist-card-share-btn:hover {
+  border-color: var(--accent-gold); color: var(--accent-gold);
+  background: rgba(201,168,76,0.06);
+}
+.artist-card-share-btn.copied {
+  border-color: var(--success); color: var(--success);
+  background: rgba(16,185,129,0.06);
+}
+
+/* Bouton "Voir →" */
+.artist-card-page-btn {
+  padding: 6px 10px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: transparent;
+  color: var(--text-muted); font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all 0.18s;
+  white-space: nowrap; font-family: var(--font-body);
+}
+.artist-card-page-btn:hover {
+  border-color: var(--accent-gold); color: var(--accent-gold);
+  background: rgba(201,168,76,0.06);
+}

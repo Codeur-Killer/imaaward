@@ -1,0 +1,122 @@
+/* ════════════════════════════════════════════
+   CategoryCard.css — Hauteur uniforme garantie
+   ════════════════════════════════════════════ */
+
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  /* Flex column avec hauteur 100% pour grille uniforme */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.category-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5), var(--shadow-gold);
+}
+
+.category-card-glow {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  transition: opacity 0.25s; opacity: 0.5;
+}
+.category-card:hover .category-card-glow { opacity: 1; }
+
+.category-card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-shrink: 0;
+}
+.category-card-icon {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+}
+
+.category-card-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: var(--radius-full);
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+}
+.status-open {
+  background: var(--success-bg); color: var(--success); border: 1px solid rgba(16,185,129,0.3);
+}
+.status-closed {
+  background: var(--danger-bg); color: var(--danger); border: 1px solid rgba(239,68,68,0.3);
+}
+.status-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: currentColor; animation: blink 1.5s ease infinite;
+}
+
+.category-card-name {
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 700; color: var(--text-primary);
+  line-height: 1.3; margin: 0; flex-shrink: 0;
+}
+
+/* Description — hauteur fixe pour uniformité */
+.category-card-desc {
+  font-size: 13px; color: var(--text-secondary); line-height: 1.55;
+  /* Clamp à 3 lignes */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.95em; /* 3 lignes à line-height 1.55 */
+  flex-shrink: 0;
+}
+
+/* Spacer pour pousser stats + footer en bas */
+.category-card-spacer { flex: 1; min-height: 8px; }
+
+.category-card-stats {
+  display: flex; align-items: center; gap: 14px;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.category-stat { display: flex; flex-direction: column; gap: 2px; }
+.category-stat-value {
+  font-family: var(--font-accent); font-size: 20px;
+  color: var(--accent-gold-light); letter-spacing: 0.02em; line-height: 1;
+}
+.category-stat-label {
+  font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em;
+}
+.category-stat-divider { width: 1px; height: 28px; background: var(--border); }
+
+.category-card-leader { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
+.category-card-leader-info { display: flex; align-items: center; gap: 6px; }
+.category-card-leader-label { font-size: 11px; color: var(--text-muted); }
+.category-card-leader-name {
+  font-size: 12px; font-weight: 600; color: var(--text-primary);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 180px;
+}
+.category-card-progress-wrap { display: flex; align-items: center; gap: 8px; }
+.category-card-progress-bar {
+  flex: 1; height: 4px;
+  background: rgba(255,255,255,0.06); border-radius: var(--radius-full); overflow: hidden;
+}
+.category-card-progress-fill {
+  height: 100%; border-radius: var(--radius-full);
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+.category-card-progress-pct {
+  font-family: var(--font-accent); font-size: 15px; flex-shrink: 0;
+}
+
+.category-card-footer { padding-top: 6px; flex-shrink: 0; }
+.category-card-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; color: var(--accent-gold);
+  letter-spacing: 0.04em; text-transform: uppercase; transition: gap 0.15s;
+}
+.category-card:hover .category-card-cta { gap: 10px; }

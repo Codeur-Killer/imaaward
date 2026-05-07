@@ -1,0 +1,175 @@
+/* PaidVoteCelebration.css */
+
+.celeb-overlay {
+  position: fixed; inset: 0; z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px;
+  background: rgba(8, 11, 18, 0.92);
+  backdrop-filter: blur(20px);
+  animation: fadeIn 0.3s ease;
+}
+
+.celeb-box {
+  position: relative;
+  background: linear-gradient(145deg, #0f1628, #1a1040, #0a1220);
+  border: 2px solid rgba(201, 168, 76, 0.5);
+  border-radius: 28px;
+  padding: 32px 28px 28px;
+  width: 100%; max-width: 420px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(201, 168, 76, 0.25),
+    0 0 120px rgba(124, 58, 237, 0.15),
+    0 32px 80px rgba(0,0,0,0.8);
+  animation: celebPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Confetti */
+.celeb-confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.celeb-confetti-piece {
+  position: absolute; top: -20px;
+  animation: confettiFall var(--dur, 2.5s) ease forwards;
+}
+
+/* Badge */
+.celeb-badge {
+  position: relative; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 14px; border-radius: 99px;
+  background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.4);
+  font-size: 11px; font-weight: 800; color: #10B981;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Texte "Tu anidjè !" */
+.celeb-text-main {
+  position: relative; z-index: 2;
+  font-family: var(--font-display);
+  font-size: clamp(36px, 10vw, 56px);
+  font-weight: 900;
+  line-height: 1;
+  margin: 4px 0 16px;
+  animation: celebTextPulse 1.2s ease infinite alternate;
+}
+.celeb-tu    { color: #fff; }
+.celeb-anidge {
+  background: linear-gradient(135deg, #C9A84C, #F5C87B, #E8C56A);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(201,168,76,0.6));
+}
+.celeb-excl  { color: #7C3AED; }
+
+/* Personnage dansant */
+.dancer-wrap {
+  position: relative; z-index: 2;
+  width: 140px; height: 160px;
+  margin: 0 auto 12px;
+  animation: dancerBounce 0.6s ease infinite alternate;
+}
+.dancer { width: 100%; height: 100%; }
+
+/* Animations du personnage */
+.dancer-arm-l { animation: armWaveL 0.5s ease infinite alternate; transform-origin: 45px 60px; }
+.dancer-arm-r { animation: armWaveR 0.5s ease infinite alternate; transform-origin: 75px 60px; }
+.dancer-leg-l { animation: legKickL 0.55s ease infinite alternate; transform-origin: 55px 95px; }
+.dancer-leg-r { animation: legKickR 0.55s ease infinite alternate; transform-origin: 65px 95px; }
+.dancer-head  { animation: headBob 0.5s ease infinite alternate; transform-origin: 60px 28px; }
+.star { animation: starSpin 0.8s ease infinite alternate; }
+.star-1 { animation-delay: 0s; }
+.star-2 { animation-delay: 0.2s; }
+.star-3 { animation-delay: 0.1s; }
+.star-4 { animation-delay: 0.3s; }
+
+/* Infos vote */
+.celeb-info {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap;
+  margin: 6px 0;
+}
+.celeb-votes-num {
+  font-family: var(--font-display); font-size: 28px; font-weight: 900;
+  color: #C9A84C;
+}
+.celeb-votes-lbl { font-size: 14px; color: var(--text-secondary); }
+.celeb-artist {
+  font-size: 16px; font-weight: 700; color: var(--text-primary);
+  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+  padding: 2px 10px; border-radius: 99px;
+}
+
+.celeb-subtitle {
+  position: relative; z-index: 2;
+  font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin: 8px 0 16px;
+}
+
+/* Bouton */
+.celeb-close-btn {
+  position: relative; z-index: 2;
+  width: 100%; padding: 13px 20px; border-radius: 14px;
+  background: linear-gradient(135deg, #C9A84C, #E8C56A, #C9A84C);
+  background-size: 200% auto;
+  color: #080808; font-family: var(--font-body); font-size: 15px; font-weight: 800;
+  border: none; cursor: pointer;
+  transition: all 0.2s; letter-spacing: 0.04em;
+  animation: shimmer 2s linear infinite;
+}
+.celeb-close-btn:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+/* Glow ambiant */
+.celeb-box::before {
+  content: ''; position: absolute; inset: -2px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(124,58,237,0.2), rgba(16,185,129,0.2));
+  z-index: -1; animation: ambientGlow 2s ease infinite alternate;
+}
+
+/* ── Keyframes ── */
+@keyframes celebPop {
+  from { transform: scale(0.6) rotate(-3deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+@keyframes celebTextPulse {
+  from { transform: scale(1); }
+  to   { transform: scale(1.04); }
+}
+@keyframes dancerBounce {
+  from { transform: translateY(0) rotate(-3deg); }
+  to   { transform: translateY(-8px) rotate(3deg); }
+}
+@keyframes armWaveL {
+  from { transform: rotate(-20deg); }
+  to   { transform: rotate(30deg); }
+}
+@keyframes armWaveR {
+  from { transform: rotate(20deg); }
+  to   { transform: rotate(-30deg); }
+}
+@keyframes legKickL {
+  from { transform: rotate(-15deg); }
+  to   { transform: rotate(25deg); }
+}
+@keyframes legKickR {
+  from { transform: rotate(10deg); }
+  to   { transform: rotate(-20deg); }
+}
+@keyframes headBob {
+  from { transform: rotate(-5deg); }
+  to   { transform: rotate(5deg); }
+}
+@keyframes starSpin {
+  from { transform: scale(0.8) rotate(-20deg); opacity: 0.5; }
+  to   { transform: scale(1.3) rotate(20deg); opacity: 1; }
+}
+@keyframes ambientGlow {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .celeb-overlay { padding: 12px; }
+  .celeb-box { padding: 24px 20px 20px; border-radius: 20px; }
+  .dancer-wrap { width: 110px; height: 130px; }
+}

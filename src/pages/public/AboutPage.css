@@ -1,0 +1,103 @@
+.about-page {
+  padding-top: var(--navbar-height);
+  min-height: 100vh;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 64px;
+}
+
+.about-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.about-block:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-3px);
+}
+
+.about-block-icon {
+  font-size: 36px;
+  margin-bottom: 16px;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(201,168,76,0.3));
+}
+
+.about-block-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+
+.about-block-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.about-cta-section {
+  text-align: center;
+  padding: 56px 32px;
+  background: linear-gradient(135deg, rgba(201,168,76,0.06), rgba(124,58,237,0.06));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+}
+
+.about-cta-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+
+.about-cta-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0 0 28px;
+}
+
+.about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 36px;
+  background: linear-gradient(135deg, var(--accent-gold-dark), var(--accent-gold), var(--accent-gold-light));
+  background-size: 200% auto;
+  color: #080808;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(201,168,76,0.4);
+  transition: all var(--transition-base);
+}
+
+.about-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(201,168,76,0.55);
+}
+
+.about-cta-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  animation: shimmer 2s linear infinite;
+}
+
+@media (max-width: 768px) {
+  .about-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,440 @@
+/* ═══════════════════════════════════════════════════════════════
+   VoteModal.css — Rendu via Portal React (hors stacking context)
+   z-index élevé, centrage garanti, mobile-first
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Overlay ──────────────────────────────────────────────────── */
+.vm-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(4, 7, 18, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  animation: vmIn 0.18s ease;
+  /* Scroll si contenu déborde sur très petits écrans */
+  overflow-y: auto;
+}
+
+/* ─── Boîte ─────────────────────────────────────────────────────── */
+.vm-box {
+  position: relative;
+  background: #0d1525;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 430px;
+  /* scroll interne — jamais de contenu coupé */
+  max-height: calc(100svh - 32px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow:
+    0 0 0 1px rgba(201,168,76,0.05),
+    0 24px 64px rgba(0,0,0,0.85);
+  animation: vmBoxIn 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201,168,76,0.25) transparent;
+  /* flex-shrink:0 évite l'écrasement dans l'overlay */
+  flex-shrink: 0;
+}
+.vm-box::-webkit-scrollbar { width: 3px; }
+.vm-box::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 2px; }
+
+/* ─── Bouton fermer ─────────────────────────────────────────────── */
+.vm-close {
+  position: absolute; top: 10px; right: 10px;
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.45);
+  cursor: pointer; z-index: 5;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.vm-close:hover {
+  background: rgba(239,68,68,0.15);
+  border-color: rgba(239,68,68,0.4);
+  color: #f87171;
+}
+
+/* ─── Header ────────────────────────────────────────────────────── */
+.vm-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 15px 44px 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: linear-gradient(135deg, rgba(201,168,76,0.07), transparent);
+}
+.vm-hicon { font-size: 22px; flex-shrink: 0; line-height: 1; }
+.vm-htxt  { flex: 1; min-width: 0; }
+.vm-htitle {
+  font-size: 15px; font-weight: 700; color: #fff; margin: 0; line-height: 1.2;
+}
+.vm-hcat {
+  font-size: 11px; color: #C9A84C; margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* ─── Artiste ───────────────────────────────────────────────────── */
+.vm-artist {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 15px;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.vm-aphoto {
+  position: relative; width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: 9px; overflow: hidden;
+}
+.vm-aphoto img {
+  width: 44px; height: 44px; object-fit: cover; display: block;
+  border: 1.5px solid rgba(201,168,76,0.3);
+  border-radius: 9px;
+}
+.vm-aphoto-fb {
+  position: absolute; inset: 0; border-radius: 9px;
+  background: linear-gradient(135deg, #92600a, #6D28D9);
+  display: none; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; color: #fff;
+}
+.vm-ainfo { flex: 1; min-width: 0; }
+.vm-aname {
+  font-size: 14px; font-weight: 700; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.vm-agenre { font-size: 11px; color: #C9A84C; font-style: italic; margin: 1px 0; }
+.vm-anat   { font-size: 11px; color: rgba(255,255,255,0.35); }
+.vm-avotes { text-align: right; flex-shrink: 0; }
+.vm-avnum  { display: block; font-size: 17px; font-weight: 900; color: #E8C56A; line-height: 1; }
+.vm-avlbl  { display: block; font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: .1em; }
+
+/* ─── Body ──────────────────────────────────────────────────────── */
+.vm-body {
+  padding: 14px 15px 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.vm-center {
+  align-items: center; text-align: center;
+  padding: 48px 15px; min-height: 160px; gap: 14px;
+}
+
+/* ─── Tabs ──────────────────────────────────────────────────────── */
+.vm-tabs { display: flex; gap: 6px; }
+.vm-tab {
+  flex: 1; padding: 9px 10px; border-radius: 9px;
+  border: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  color: rgba(255,255,255,0.45);
+  font-size: 12px; font-weight: 700;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+  transition: all 0.15s; position: relative;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.vm-tab:hover:not(:disabled) { border-color: #C9A84C; color: #C9A84C; }
+.vm-tab.active { background: rgba(201,168,76,0.12); border-color: #C9A84C; color: #E8C56A; }
+.vm-tab:disabled { opacity: 0.4; cursor: not-allowed; }
+.vm-used-badge {
+  position: absolute; top: -7px; right: -5px;
+  background: #10B981; color: #fff;
+  font-size: 8px; font-weight: 800; padding: 1px 5px; border-radius: 99px;
+}
+.vm-inf {
+  background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.4);
+  color: #a78bfa; font-size: 10px; font-weight: 900; padding: 0 5px; border-radius: 99px;
+}
+
+/* ─── Box gratuit ───────────────────────────────────────────────── */
+.vm-free-box {
+  background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 11px; padding: 14px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.vm-free-emoji { font-size: 28px; line-height: 1; }
+.vm-free-title { font-size: 14px; font-weight: 700; color: #fff; }
+.vm-free-sub   { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.vm-free-pill  {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 3px 10px; border-radius: 99px;
+  background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
+  font-size: 11px; font-weight: 600; color: #10B981;
+}
+
+/* ─── Info box ──────────────────────────────────────────────────── */
+.vm-info-box {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 10px 12px; border-radius: 10px;
+  font-size: 13px; line-height: 1.5;
+}
+.vm-info-box strong { color: #fff; }
+.vm-info-green  { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); color: #6ee7b7; }
+.vm-info-purple { background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.25); color: rgba(255,255,255,0.6); }
+
+/* ─── Compteur ──────────────────────────────────────────────────── */
+.vm-count-label {
+  font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: .07em;
+}
+.vm-counter {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+}
+.vm-cbtn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.05);
+  color: #fff; font-size: 20px; cursor: pointer; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s; font-family: inherit;
+}
+.vm-cbtn:hover { border-color: #C9A84C; color: #C9A84C; }
+.vm-cnum  { text-align: center; min-width: 54px; }
+.vm-cval  { display: block; font-size: 30px; font-weight: 900; color: #E8C56A; line-height: 1; }
+.vm-csub  { display: block; font-size: 9px; color: rgba(255,255,255,0.3); }
+.vm-quick { display: flex; gap: 5px; flex-wrap: wrap; justify-content: center; }
+.vm-qbtn  {
+  padding: 4px 12px; border-radius: 7px;
+  border: 1px solid rgba(255,255,255,0.1); background: transparent;
+  color: rgba(255,255,255,0.4); font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s; font-family: inherit;
+}
+.vm-qbtn:hover, .vm-qbtn.active {
+  background: rgba(201,168,76,0.12); border-color: #C9A84C; color: #C9A84C;
+}
+
+/* ─── Prix ──────────────────────────────────────────────────────── */
+.vm-price-box {
+  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 10px; padding: 10px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.vm-prow {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,0.45);
+}
+.vm-ptotal { font-size: 14px; color: #fff; }
+.vm-ptotal strong { color: #E8C56A; font-size: 18px; font-weight: 900; }
+
+/* ─── Champs formulaire ──────────────────────────────────────────── */
+.vm-field { display: flex; flex-direction: column; gap: 4px; }
+.vm-label {
+  font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35);
+  text-transform: uppercase; letter-spacing: .08em;
+}
+.vm-input {
+  width: 100%; box-sizing: border-box;
+  padding: 11px 13px; border-radius: 9px;
+  border: 1.5px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  /* font-size 16px évite le zoom auto sur iOS */
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.15s, background 0.15s;
+}
+.vm-input::placeholder { color: rgba(255,255,255,0.2); }
+.vm-input:focus {
+  outline: none;
+  border-color: #C9A84C;
+  background: rgba(201,168,76,0.06);
+}
+
+/* ─── Méthodes de paiement ───────────────────────────────────────── */
+.vm-methods {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 9px; padding: 9px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.vm-methods-title {
+  font-size: 10px; color: rgba(255,255,255,0.3); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+}
+.vm-methods-list {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.vm-methods-list span {
+  padding: 3px 9px; border-radius: 99px;
+  font-size: 11px; font-weight: 600;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.5);
+}
+
+/* ─── Erreur ────────────────────────────────────────────────────── */
+.vm-err {
+  padding: 9px 12px; border-radius: 8px;
+  background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.35);
+  color: #fca5a5; font-size: 12px; line-height: 1.5;
+}
+
+/* ─── Boutons principaux ─────────────────────────────────────────── */
+/* Or — vote gratuit */
+.vm-btn-gold {
+  position: relative; overflow: hidden; width: 100%;
+  padding: 13px 16px; border-radius: 11px;
+  background: linear-gradient(135deg, #92600a, #C9A84C, #E8C56A);
+  color: #080808; font-size: 13px; font-weight: 800;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 18px rgba(201,168,76,0.45);
+  transition: transform 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+.vm-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,168,76,0.6); }
+
+/* Violet — vote payant */
+.vm-btn-purple {
+  position: relative; overflow: hidden; width: 100%;
+  padding: 13px 16px; border-radius: 11px;
+  background: linear-gradient(135deg, #4C1D95, #7C3AED, #9F67F5);
+  color: #fff; font-size: 13px; font-weight: 800;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 18px rgba(124,58,237,0.5);
+  transition: transform 0.15s, box-shadow 0.15s;
+  font-family: inherit;
+}
+.vm-btn-purple:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(124,58,237,0.65); }
+.vm-btn-lg { padding: 15px 16px; font-size: 14px; }
+
+/* Vert — succès */
+.vm-btn-green {
+  position: relative; overflow: hidden; width: 100%;
+  padding: 12px 16px; border-radius: 11px;
+  background: linear-gradient(135deg, #065F46, #059669, #10B981);
+  color: #fff; font-size: 13px; font-weight: 800;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  box-shadow: 0 4px 16px rgba(16,185,129,0.4);
+  transition: transform 0.15s;
+  font-family: inherit;
+}
+.vm-btn-green:hover { transform: translateY(-1px); }
+
+/* Shimmer sur tous les boutons */
+.vm-shimmer {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: vmShimmer 2.5s linear infinite;
+}
+
+/* Lien */
+.vm-link {
+  background: none; border: none; color: #C9A84C;
+  font-size: 12px; font-weight: 600; cursor: pointer;
+  text-align: center; padding: 3px;
+  text-decoration: underline; text-underline-offset: 3px;
+  font-family: inherit;
+}
+.vm-link:hover { color: #E8C56A; }
+
+/* Séparateur */
+.vm-or {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; color: rgba(255,255,255,0.2);
+}
+.vm-or::before, .vm-or::after {
+  content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.07);
+}
+
+/* Note */
+.vm-note { font-size: 10px; color: rgba(255,255,255,0.25); text-align: center; line-height: 1.5; }
+
+/* ─── Récapitulatif paiement ─────────────────────────────────────── */
+.vm-recap {
+  background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 10px; padding: 10px 13px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.vm-recap-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,0.45);
+}
+.vm-recap-row strong  { color: #fff; font-weight: 700; }
+.vm-recap-price { color: #E8C56A !important; font-size: 16px; font-weight: 900; }
+.vm-recap-email { font-size: 11px; color: rgba(255,255,255,0.35); }
+.vm-ref {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 7px; padding: 6px 10px; font-size: 10px; color: rgba(255,255,255,0.3);
+  word-break: break-all;
+}
+.vm-ref code { color: #C9A84C; font-family: monospace; font-size: 11px; }
+
+/* ─── Succès vote gratuit ────────────────────────────────────────── */
+.vm-success {
+  padding: 22px 15px 20px;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  position: relative; overflow: hidden;
+}
+.vm-ok-circle {
+  width: 62px; height: 62px; border-radius: 50%;
+  background: rgba(16,185,129,0.12); border: 2px solid #10B981;
+  display: flex; align-items: center; justify-content: center; color: #10B981;
+  animation: vmScale 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.vm-ok-title { font-size: 17px; font-weight: 800; color: #fff; }
+.vm-ok-msg   { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+.vm-ok-msg strong { color: #fff; }
+.vm-ok-stats {
+  display: flex; gap: 18px; padding: 8px 16px;
+  background: rgba(201,168,76,0.06); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 9px;
+}
+.vm-stat      { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.vm-stat-n    { font-size: 16px; font-weight: 800; color: #E8C56A; }
+.vm-stat-l    { font-size: 9px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: .1em; }
+
+/* ─── Loading ────────────────────────────────────────────────────── */
+.vm-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid rgba(201,168,76,0.15); border-top-color: #C9A84C;
+  border-radius: 50%; animation: vmSpin 0.75s linear infinite;
+}
+.vm-spin-txt { font-size: 13px; color: rgba(255,255,255,0.4); font-style: italic; }
+
+/* ─── Confetti ───────────────────────────────────────────────────── */
+.vm-confetti { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.vm-confetti-piece { position: absolute; top: -16px; animation: vmFall 2.5s ease forwards; }
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 540px) {
+  .vm-overlay { padding: 10px; }
+  .vm-box { border-radius: 16px; }
+}
+
+/* Mobile portrait — sheet depuis le bas */
+@media (max-width: 480px) {
+  .vm-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .vm-box {
+    border-radius: 20px 20px 0 0;
+    max-height: 93svh;
+    max-width: 100%;
+    width: 100%;
+    animation: vmBottom 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Paysage mobile */
+@media (max-height: 520px) {
+  .vm-box { max-height: 98svh; }
+  .vm-free-box { padding: 10px; }
+  .vm-free-emoji { font-size: 20px; }
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────── */
+@keyframes vmIn     { from { opacity:0; } to { opacity:1; } }
+@keyframes vmBoxIn  { from { opacity:0; transform:scale(0.93) translateY(14px); } to { opacity:1; transform:scale(1) translateY(0); } }
+@keyframes vmBottom { from { transform:translateY(100%); } to { transform:translateY(0); } }
+@keyframes vmShimmer{ 0%{transform:translateX(-100%);} 100%{transform:translateX(100%);} }
+@keyframes vmSpin   { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+@keyframes vmScale  { from{transform:scale(0.5);opacity:0;} to{transform:scale(1);opacity:1;} }
+@keyframes vmFall   { 0%{transform:translateY(-10px) rotate(0deg);opacity:1;} 100%{transform:translateY(100vh) rotate(720deg);opacity:0;} }
