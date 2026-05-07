@@ -104,9 +104,9 @@ export default function ResultsPage() {
             <>
               <div className="results-cat-header">
                 <div className="results-cat-info">
-                  <span style={{ fontSize: '28px' }}>{activeCategory.icon}</span>
+                  {/* <span style={{ fontSize: '28px' }}>{activeCategory.icon}</span> */}
                   <div>
-                    <h2 className="results-cat-title">{activeCategory.name}</h2>
+                    <h3 className="results-cat-title">{activeCategory.name}</h3>
                     <p className="results-cat-total">
                       {totalVotes.toLocaleString('fr-FR')} votes au total · {artists.length} nominés
                     </p>
