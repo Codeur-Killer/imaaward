@@ -74,10 +74,11 @@ function ModalContent({ artist, category, onClose }) {
 
   /* Init paiement FedaPay */
   const doPaidInit = async () => {
-    if (!name.trim())                     { setErr('Votre nom est requis.'); return; }
-    if (!email || !/\S+@\S+\.\S+/.test(email)) { setErr('Email invalide.'); return; }
+    if (email && !/\S+@\S+\.\S+/.test(email)) { setErr('Email invalide.'); return; }
     setStep('loading'); setErr('');
-    const r = await initPaidVote(aid, qty, email, name);
+    const finalEmail = email || 'anonyme@example.com';
+    const finalName = name.trim() || 'Anonyme';
+    const r = await initPaidVote(aid, qty, finalEmail, finalName);
     if (!r.success) { setErr(r.message || 'Erreur paiement.'); setStep('select'); return; }
     setUrl(r.data.checkoutUrl);
     setRef(r.data.transactionRef);
@@ -237,13 +238,13 @@ function ModalContent({ artist, category, onClose }) {
 
                 {/* Formulaire */}
                 <div className="vm-field">
-                  <label className="vm-label" htmlFor="vmnm">Votre nom complet</label>
+                  <label className="vm-label" htmlFor="vmnm">Votre nom complet (optionnel)</label>
                   <input id="vmnm" className="vm-input" type="text"
                     placeholder="Prénom Nom" value={name}
                     onChange={e => { setName(e.target.value); setErr(''); }} />
                 </div>
                 <div className="vm-field">
-                  <label className="vm-label" htmlFor="vmem">Email (reçu de paiement)</label>
+                  <label className="vm-label" htmlFor="vmem">Email (optionnel, pour le reçu)</label>
                   <input id="vmem" className="vm-input" type="email"
                     placeholder="votre@email.com" value={email}
                     onChange={e => { setEmail(e.target.value); setErr(''); }} />

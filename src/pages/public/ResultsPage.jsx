@@ -85,7 +85,7 @@ export default function ResultsPage() {
                   className={`results-tab ${activeTab === cid ? 'active' : ''}`}
                   onClick={() => setActiveTab(cid)}
                 >
-                  <span>{cat.icon}</span>
+                  {/* <span>{cat.icon}</span> */}
                   <span className="results-tab-name">{cat.name}</span>
                   <span className="results-tab-votes">
                     {getTotalVotesForCategory(cid).toLocaleString('fr-FR')}

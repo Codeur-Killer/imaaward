@@ -55,11 +55,11 @@ export default function Footer() {
             <h4 className="footer-nav-title">Catégories</h4>
             <ul className="footer-nav-list">
               {[
-                'Meilleur Artiste Masculin',
-                'Meilleure Artiste Féminine',
-                'Révélation de l\'Année',
-                'Meilleur Album',
-                'Meilleur Clip Vidéo',
+                'Best ZOUGLOU Manager',
+                'Best West Africa Manager',
+                'Best Variety Manager',
+                'Best Rap Ivoir Manager',
+                'Best Gospel Manager',
               ].map(c => (
                 <li key={c}><Link to="/categories" className="footer-nav-link">{c}</Link></li>
               ))}
