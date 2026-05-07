@@ -72,30 +72,30 @@ function GoldConfetti() {
 export default function PaidVoteCelebration({ isOpen, onClose, artistName, voteCount }) {
   const audioRef = useRef(null);
 
-  useEffect(() => {
-    if (!isOpen) return;
-    // Synthèse vocale "Tu anidjè !"
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utt = new SpeechSynthesisUtterance('Tu anidjè !');
-      utt.lang  = 'fr-FR';
-      utt.rate  = 0.85;
-      utt.pitch = 1.3;
-      utt.volume = 1;
-      // Essayer une voix africaine/française
-      const voices = window.speechSynthesis.getVoices();
-      const frVoice = voices.find(v => v.lang.startsWith('fr')) || voices[0];
-      if (frVoice) utt.voice = frVoice;
-      // Attendre un court délai pour l'animation
-      setTimeout(() => window.speechSynthesis.speak(utt), 600);
-    }
-    // Auto-fermeture après 5 secondes
-    const timer = setTimeout(onClose, 5000);
-    return () => {
-      clearTimeout(timer);
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
-    };
-  }, [isOpen, onClose]);
+  // useEffect(() => {
+  //   if (!isOpen) return;
+  //   // Synthèse vocale "Tu anidjè !"
+  //   if ('speechSynthesis' in window) {
+  //     window.speechSynthesis.cancel();
+  //     const utt = new SpeechSynthesisUtterance('ANITCHE !');
+  //     utt.lang  = 'fr-FR';
+  //     utt.rate  = 0.85;
+  //     utt.pitch = 1.3;
+  //     utt.volume = 1;
+  //     // Essayer une voix africaine/française
+  //     const voices = window.speechSynthesis.getVoices();
+  //     const frVoice = voices.find(v => v.lang.startsWith('fr')) || voices[0];
+  //     if (frVoice) utt.voice = frVoice;
+  //     // Attendre un court délai pour l'animation
+  //     setTimeout(() => window.speechSynthesis.speak(utt), 600);
+  //   }
+  //   // Auto-fermeture après 5 secondes
+  //   const timer = setTimeout(onClose, 5000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //     if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  //   };
+  // }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -109,8 +109,8 @@ export default function PaidVoteCelebration({ isOpen, onClose, artistName, voteC
 
         {/* Texte principal */}
         <div className="celeb-text-main">
-          <span className="celeb-tu">Tu </span>
-          <span className="celeb-anidge">anidjè</span>
+          {/* <span className="celeb-tu">Tu </span> */}
+          <span className="celeb-anidge">ANITCHE</span>
           <span className="celeb-excl"> !</span>
         </div>
 
@@ -125,7 +125,7 @@ export default function PaidVoteCelebration({ isOpen, onClose, artistName, voteC
         </div>
 
         <p className="celeb-subtitle">
-          Merci pour votre soutien ! Vos votes ont bien été comptabilisés. 🌍🎵
+          Merci pour votre soutien ! Vos votes ont bien été comptabilisés. 
         </p>
 
         <button className="celeb-close-btn" onClick={onClose}>
