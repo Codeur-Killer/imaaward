@@ -49,7 +49,7 @@ export default function CategoryCard({ category, index = 0 }) {
       <div className="category-card-stats">
         <div className="category-stat">
           <span className="category-stat-value">{artists.length}</span>
-          <span className="category-stat-label">Artistes</span>
+          <span className="category-stat-label">Managers</span>
         </div>
         <div className="category-stat-divider" />
         <div className="category-stat">

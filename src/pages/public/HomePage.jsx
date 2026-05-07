@@ -59,7 +59,7 @@ export default function HomePage() {
         <div className="container">
           <div className="stats-grid">
             {[
-              { value: artists.length || stats?.totalArtists || 26,      label: 'Artistes en compétition', icon: '' },
+              { value: artists.length || stats?.totalArtists || 26,      label: 'Managers en compétition', icon: '' },
               { value: categories.length || stats?.totalCategories || 5, label: 'Catégories',              icon: '' },
               { value: totalVotes,                                        label: 'Votes enregistrés',       icon: '' },
             ].map((stat, i) => (
