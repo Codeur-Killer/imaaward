@@ -107,7 +107,7 @@ export default function HomePage() {
             </div>
             <div className="section-cta-wrap">
               <button className="section-cta-btn" onClick={() => navigate('/categories')}>
-                Voir tous les artistes →
+                Voir tous les managers →
               </button>
             </div>
           </div>

@@ -74,7 +74,7 @@ export default function CategoryDetailPage() {
                 <span className="status-dot" />
                 {category.status === 'open' ? 'Votes ouverts' : 'Votes fermés'}
               </div>
-              <h1 className="cat-detail-title">{category.name}</h1>
+              <h1 className="cat-detail-title" style={{ textTransform: "uppercase" }}>{category.name}</h1>
               <p className="cat-detail-desc">{category.description}</p>
               <div className="cat-detail-meta">
                 <span className="cat-detail-meta-item">

@@ -17,7 +17,7 @@ export default function LiveResultsWidget() {
         <div className="live-widget-header">
           <div className="live-widget-title-wrap">
             <div className="live-badge"><span className="live-dot" />LIVE</div>
-            <h2 className="section-title live-widget-title">Résultats en temps réel</h2>
+            <h2 className="section-title live-widget-title" style={{ textTransform: "uppercase" }}>Résultats en temps réel</h2>
           </div>
           <button className="live-widget-see-all" onClick={() => navigate('/resultats')}>
             Voir tout
@@ -35,7 +35,7 @@ export default function LiveResultsWidget() {
               <div key={catId} className="live-category-card">
                 <div className="live-cat-header">
                   <span className="live-cat-icon"></span>
-                  <h3 className="live-cat-name">{cat.name}</h3>
+                  <h3 className="live-cat-name" style={{ textTransform: "uppercase" }}>{cat.name}</h3>
                 </div>
                 <div className="live-cat-artists">
                   {top3.map((artist, i) => {
