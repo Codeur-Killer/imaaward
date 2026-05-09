@@ -66,7 +66,7 @@ export default function ResultsPage() {
               <span className="live-dot" />
               RÉSULTATS EN DIRECT
             </div>
-            <h1 className="results-title">Résultats en Direct</h1>
+            <h1 className="results-title" style={{ textTransform: "uppercase" }}>Résultats en Direct</h1>
             <p className="results-desc">
               Suivez les votes en temps réel. Résultats mis à jour automatiquement.
             </p>
@@ -86,7 +86,7 @@ export default function ResultsPage() {
                   onClick={() => setActiveTab(cid)}
                 >
                   {/* <span>{cat.icon}</span> */}
-                  <span className="results-tab-name">{cat.name}</span>
+                  <span className="results-tab-name" style={{ textTransform: "uppercase" }}>{cat.name}</span>
                   <span className="results-tab-votes">
                     {getTotalVotesForCategory(cid).toLocaleString('fr-FR')}
                   </span>
