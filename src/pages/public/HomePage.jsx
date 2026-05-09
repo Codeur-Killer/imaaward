@@ -78,7 +78,7 @@ export default function HomePage() {
         <div className="container">
           <div className="section-header">
             <div className="section-tag"> Compétitions</div>
-            <h2 className="section-big-title">Explorez les Catégories</h2>
+            <h2 className="section-big-title" style={{ textTransform: "uppercase" }}>Explorez les Catégories</h2>
             <p className="section-desc">Découvrez toutes les catégories et soutenez vos artistes préférés.</p>
           </div>
           <div className="categories-grid">
