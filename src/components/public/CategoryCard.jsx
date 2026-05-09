@@ -37,10 +37,10 @@ export default function CategoryCard({ category, index = 0 }) {
       </div>
 
       {/* Nom */}
-      <h3 className="category-card-name">{category.name}</h3>
+      <h3 className="category-card-name" style="text-transform: uppercase;">{category.name}</h3>
 
-      {/* Description — hauteur fixe (clamp CSS) */}
-      <p className="category-card-desc">{category.description}</p>
+      { /* Description — hauteur fixe (clamp CSS) */ }
+      {/* <p className="category-card-desc">{category.description}</p> */}
 
       {/* Spacer — pousse le reste en bas */}
       <div className="category-card-spacer" />
