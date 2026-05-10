@@ -12,10 +12,10 @@ export default function CategoriesPage() {
         <div className="page-hero-glow" />
         <div className="container">
           <div className="page-hero-content">
-            <div className="section-tag"> IMA Awards 2025–2026</div>
+            <div className="section-tag"> IMA Awards 2026</div>
             <h1 className="page-hero-title" style={{ textTransform: "uppercase" }}>Toutes les catégories</h1>
             <p className="page-hero-desc">
-              Choisissez une catégorie et votez pour votre artiste favori. <br />
+              Choisissez une catégorie et votez pour votre manager favori. <br />
               Les votes sont ouverts — faites entendre votre voix !
             </p>
           </div>

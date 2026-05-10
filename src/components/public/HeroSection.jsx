@@ -85,7 +85,7 @@ export default function HeroSection() {
       <div className="hero-content">
         <div className="hero-badge">
           <span className="hero-badge-dot" />
-          Votes ouverts · Saison 2025–2026
+          Votes ouverts · Saison 2026
         </div>
 
         <h1 className="hero-title">
