@@ -85,7 +85,7 @@ export default function PartnersSection() {
             <div className="partners-tag"><RiShakeHandsLine /> Partenaires officiels</div>
             <h2 className="partners-title">Ils soutiennent les IMA Awards</h2>
             <p className="partners-desc">
-              Nos partenaires s'engagent chaque année aux côtés des artistes africains et francophones.
+              Nos partenaires s'engagent chaque année aux côtés des managers africains et francophones.
             </p>
           </div>
         </div>

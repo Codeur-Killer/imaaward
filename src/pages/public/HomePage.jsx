@@ -79,7 +79,7 @@ export default function HomePage() {
           <div className="section-header">
             <div className="section-tag"> Compétitions</div>
             <h2 className="section-big-title" style={{ textTransform: "uppercase" }}>Explorez les Catégories</h2>
-            <p className="section-desc">Découvrez toutes les catégories et soutenez vos artistes préférés.</p>
+            <p className="section-desc">Découvrez toutes les catégories et soutenez vos managers préférés.</p>
           </div>
           <div className="categories-grid">
             {categories.map((cat, i) => (
@@ -127,7 +127,7 @@ export default function HomePage() {
           <div className="how-steps">
             {[
               { step:'01', icon:'', title:'Choisissez une catégorie',  desc:"Parcourez les catégories et découvrez les managers nominés." },
-              { step:'02', icon:'', title:'Sélectionnez votre artiste', desc:"Consultez les profils et choisissez qui vous souhaitez soutenir." },
+              { step:'02', icon:'', title:'Sélectionnez votre manager', desc:"Consultez les profils et choisissez qui vous souhaitez soutenir." },
               { step:'03', icon:'', title:'Votez et soutenez',          desc:"Votez et multipliez votre soutien via FedaPay pour plus de votes." },
             ].map((s, i) => (
               <div key={i} className="how-step animate-in" style={{ animationDelay: `${i * 0.15}s` }}>
