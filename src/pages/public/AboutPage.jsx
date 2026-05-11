@@ -44,9 +44,8 @@ export default function AboutPage() {
               <div className="about-block-icon"></div>
               <h2 className="about-block-title">Diversité & Inclusion</h2>
               <p className="about-block-text">
-                Nos 5 catégories couvrent un spectre large : de l'artiste masculin à la révélation de
-                l'année, en passant par le meilleur album et le clip le plus marquant. Tous les genres
-                musicaux africains sont représentés.
+               Nos 16 catégories mettent en lumière l’excellence et la diversité des managers africains.  
+Elles couvrent un spectre large : des figures les plus influentes aux révélations de l’année, en passant par les talents émergents et les pionniers qui façonnent l’avenir de l’industrie musicale.
               </p>
             </div>
 
