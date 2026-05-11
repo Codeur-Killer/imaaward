@@ -54,10 +54,12 @@
 
 .results-tabs {
   display: flex;
+  flex-wrap: nowrap;
   gap: 4px;
   overflow-x: auto;
   padding: 12px 0;
   scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 .results-tabs::-webkit-scrollbar { display: none; }
@@ -77,6 +79,7 @@
   white-space: nowrap;
   font-family: var(--font-body);
   min-width: 120px;
+  flex-shrink: 0;
 }
 
 .results-tab:hover {
