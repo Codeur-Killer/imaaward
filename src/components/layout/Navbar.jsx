@@ -90,9 +90,9 @@ export default function Navbar() {
             <span className="navbar-cta-shimmer" />
             Voter maintenant
           </button>
-          <Link to="/admin" className="navbar-admin-link" onClick={() => setMenuOpen(false)}>
+          {/* <Link to="/admin" className="navbar-admin-link" onClick={() => setMenuOpen(false)}>
             Espace Admin →
-          </Link>
+          </Link> */}
         </div>
       </div>
       {menuOpen && <div className="navbar-overlay" onClick={() => setMenuOpen(false)} />}

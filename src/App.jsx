@@ -47,7 +47,7 @@ export default function App() {
             <Route path="/paiement-mock"     element={<PaymentMockPage />} />
 
             {/* ── Admin ── */}
-            <Route path="/admin"             element={<AdminLoginPage />} />
+            <Route path="/admin_adminimaaward"             element={<AdminLoginPage />} />
             <Route path="/admin/dashboard"   element={<AdminLayout><DashboardPage /></AdminLayout>} />
             <Route path="/admin/artistes"    element={<AdminLayout><ManageArtistsPage /></AdminLayout>} />
             <Route path="/admin/categories"  element={<AdminLayout><ManageCategoriesPage /></AdminLayout>} />
