@@ -12,7 +12,7 @@ export default function LaureatesEdition1Page() {
           <div className="laureates-hero-content">
             <h1 className="laureates-title">Lauréats Édition 1</h1>
             <p className="laureates-desc">
-              Revivez les moments forts de notre toute première édition. Découvrez les artistes exceptionnels qui ont marqué l'histoire des IMA Awards.
+              Revivez les moments forts de notre toute première édition. Découvrez les managers exceptionnels qui ont marqué l'histoire des IMA Awards.
             </p>
           </div>
         </div>
