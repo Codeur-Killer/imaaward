@@ -41,7 +41,7 @@ export const laureatesEdition1 = [
     id: 6,
     name: "Chuck Well",
     category: "BEST ART DIRECTOR",
-    photo: "/chuck.jpeg", 
+    photo: "/well.jpeg", 
     description: "Vainqueur de la première édition."
   },
 
@@ -57,7 +57,7 @@ export const laureatesEdition1 = [
     id: 8,
     name: "Jamaica ",
     category: "BEST VARIETY MANAGER",
-    photo: "/jamaica.jpeg", 
+    photo: "/jama.jpeg", 
     description: "Vainqueur de la première édition."
   },
 
