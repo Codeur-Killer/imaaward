@@ -12,6 +12,7 @@ import HomePage           from './pages/public/HomePage.jsx';
 import CategoriesPage     from './pages/public/CategoriesPage.jsx';
 import CategoryDetailPage from './pages/public/CategoryDetailPage.jsx';
 import ResultsPage        from './pages/public/ResultsPage.jsx';
+import LaureatesEdition1Page from './pages/public/LaureatesEdition1Page.jsx';
 import AboutPage          from './pages/public/AboutPage.jsx';
 import ArtistSharePage    from './pages/public/ArtistSharePage.jsx';
 import PaymentSuccessPage from './pages/public/PaymentSuccessPage.jsx';
@@ -37,6 +38,7 @@ export default function App() {
             <Route path="/categories"        element={<PublicLayout><CategoriesPage /></PublicLayout>} />
             <Route path="/categories/:slug"  element={<PublicLayout><CategoryDetailPage /></PublicLayout>} />
             <Route path="/resultats"         element={<PublicLayout><ResultsPage /></PublicLayout>} />
+            <Route path="/laureats-edition-1" element={<PublicLayout><LaureatesEdition1Page /></PublicLayout>} />
             <Route path="/a-propos"          element={<PublicLayout><AboutPage /></PublicLayout>} />
             <Route path="/artiste/:artistId" element={<PublicLayout><ArtistSharePage /></PublicLayout>} />
 

@@ -23,6 +23,7 @@ export default function Navbar() {
     { to: '/', label: 'Accueil', exact: true },
     { to: '/categories', label: 'Catégories' },
     { to: '/resultats', label: 'Résultats' },
+    { to: '/laureats-edition-1', label: 'Lauréats Éd. 1' },
     { to: '/a-propos', label: 'À propos' },
   ];
 
